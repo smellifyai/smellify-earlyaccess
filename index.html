@@ -3,102 +3,166 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Join the Waitlist</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <title>Smellify – Join the Waitlist</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
     body {
       display: flex;
       align-items: center;
       justify-content: center;
       height: 100vh;
-      background: linear-gradient(135deg, #6a11cb, #2575fc);
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      overflow: hidden;
       color: #fff;
     }
+
+    /* Elegant animated background blur */
+    body::before {
+      content: "";
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(255,255,255,0.15), transparent 70%);
+      top: -150px;
+      left: -150px;
+      filter: blur(120px);
+      animation: float 8s infinite alternate ease-in-out;
+    }
+    body::after {
+      content: "";
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(255,183,77,0.25), transparent 70%);
+      bottom: -100px;
+      right: -150px;
+      filter: blur(100px);
+      animation: float 10s infinite alternate-reverse ease-in-out;
+    }
+    @keyframes float {
+      from { transform: translateY(0px); }
+      to { transform: translateY(40px); }
+    }
+
     .container {
-      background: rgba(0,0,0,0.65);
-      padding: 50px 30px;
-      border-radius: 20px;
+      position: relative;
+      z-index: 2;
+      background: rgba(255,255,255,0.05);
+      padding: 60px 40px;
+      border-radius: 24px;
       text-align: center;
-      max-width: 450px;
+      max-width: 500px;
       width: 100%;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.15);
     }
+
     h1 {
-      font-size: 2rem;
-      margin-bottom: 20px;
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 15px;
+      background: linear-gradient(90deg, #ffb347, #ffcc33);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
-    p {
-      margin-bottom: 30px;
+
+    p.subtitle {
+      font-size: 1.1rem;
+      margin-bottom: 35px;
       color: #ddd;
+      font-weight: 300;
     }
+
     input[type="email"] {
       width: 80%;
-      padding: 15px;
-      border-radius: 10px;
-      border: none;
+      padding: 16px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.25);
       margin-bottom: 20px;
       font-size: 1rem;
+      background: rgba(255,255,255,0.1);
+      color: #fff;
+      outline: none;
+      transition: all 0.3s ease;
     }
+    input[type="email"]::placeholder {
+      color: #bbb;
+    }
+    input[type="email"]:focus {
+      border-color: #ffb347;
+      background: rgba(255,255,255,0.15);
+    }
+
     button {
-      padding: 15px 40px;
-      background: #ff9800;
+      padding: 16px 40px;
+      background: linear-gradient(90deg, #ff9800, #ffb347);
       color: #fff;
       border: none;
-      border-radius: 10px;
+      border-radius: 12px;
       font-size: 1rem;
       font-weight: 600;
       cursor: pointer;
-      transition: 0.3s;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 5px 15px rgba(255,152,0,0.4);
     }
     button:hover {
-      background: #e68900;
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(255,152,0,0.5);
     }
+
     .success {
-      margin-top: 20px;
+      margin-top: 25px;
       font-weight: 600;
       color: #4caf50;
+    }
+
+    footer {
+      margin-top: 30px;
+      font-size: 0.8rem;
+      color: #aaa;
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <h1>Join the Waitlist</h1>
-    <p>Enter your email to get exclusive access!</p>
+    <h1>Smellify</h1>
+    <p class="subtitle">Luxury confidence. No more awkward moments. Join our waitlist today.</p>
     <form id="waitlistForm">
-      <input type="email" id="email" placeholder="Your email" required>
+      <input type="email" id="email" placeholder="Enter your email" required>
       <br>
-      <button type="submit">Join Now</button>
+      <button type="submit">Join the Waitlist</button>
     </form>
     <p id="message" class="success"></p>
+    <footer>© 2025 Smellify. All rights reserved.</footer>
   </div>
 
   <script>
-  const form = document.getElementById("waitlistForm");
-  const message = document.getElementById("message");
+    const form = document.getElementById("waitlistForm");
+    const message = document.getElementById("message");
 
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    const email = document.getElementById("email").value;
-    const url = "https://script.google.com/macros/s/AKfycbyAWth-tZAZrO2En7JCqcMmtNP8awplpnDLBp-o9XS6jOxFvyjSIxeo2Z5MojXyLvu7/exec"; // paste your /exec URL here
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const email = document.getElementById("email").value;
+      const url = "https://script.google.com/macros/s/AKfycbyAWth-tZAZrO2En7JCqcMmtNP8awplpnDLBp-o9XS6jOxFvyjSIxeo2Z5MojXyLvu7/exec";
 
-    try {
-      const res = await fetch(url, {
-        method: "POST",
-        mode: "no-cors",   // 👈 add this!
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: `email=${encodeURIComponent(email)}`
-      });
+      try {
+        await fetch(url, {
+          method: "POST",
+          mode: "no-cors",
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          body: `email=${encodeURIComponent(email)}`
+        });
 
-      // Since no-cors doesn't return JSON, just show success
-      message.textContent = "Thanks for joining the waitlist!";
-      form.reset();
+        message.textContent = "✅ Thanks for joining Smellify!";
+        form.reset();
 
-    } catch (err) {
-      console.error(err);
-      message.textContent = "Oops! Something went wrong.";
-    }
-  });
-</script>
+      } catch (err) {
+        console.error(err);
+        message.textContent = "⚠️ Oops! Something went wrong.";
+      }
+    });
+  </script>
 </body>
 </html>
