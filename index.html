@@ -3,27 +3,46 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Smellify – Confidence in Every Moment</title>
+  <title>Smellify – Join the Waitlist</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
-
     body {
-      min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
-      background: url('https://images.unsplash.com/photo-1519744346366-3f5e98f2e8b0?auto=format&fit=crop&w=1950&q=80') no-repeat center center/cover;
+      height: 100vh;
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      overflow: hidden;
       color: #fff;
-      overflow-x: hidden;
     }
 
-    .overlay {
+    /* Elegant animated background blur */
+    body::before {
+      content: "";
       position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0,0,0,0.65);
-      backdrop-filter: blur(6px);
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(255,255,255,0.15), transparent 70%);
+      top: -150px;
+      left: -150px;
+      filter: blur(120px);
+      animation: float 8s infinite alternate ease-in-out;
+    }
+    body::after {
+      content: "";
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(255,183,77,0.25), transparent 70%);
+      bottom: -100px;
+      right: -150px;
+      filter: blur(100px);
+      animation: float 10s infinite alternate-reverse ease-in-out;
+    }
+    @keyframes float {
+      from { transform: translateY(0px); }
+      to { transform: translateY(40px); }
     }
 
     .container {
@@ -33,53 +52,27 @@
       padding: 60px 40px;
       border-radius: 24px;
       text-align: center;
-      max-width: 550px;
-      width: 90%;
+      max-width: 500px;
+      width: 100%;
       box-shadow: 0 20px 60px rgba(0,0,0,0.6);
       backdrop-filter: blur(20px);
       border: 1px solid rgba(255,255,255,0.15);
-      animation: fadeIn 1.2s ease-out;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
     }
 
     h1 {
-      font-size: 2.8rem;
+      font-size: 2.5rem;
       font-weight: 700;
-      margin-bottom: 20px;
-      background: linear-gradient(90deg, #f8d568, #ffcc33);
+      margin-bottom: 15px;
+      background: linear-gradient(90deg, #ffb347, #ffcc33);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
 
     p.subtitle {
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       margin-bottom: 35px;
       color: #ddd;
       font-weight: 300;
-      line-height: 1.6;
-    }
-
-    .features {
-      margin: 40px 0;
-      text-align: left;
-      color: #ccc;
-    }
-
-    .features h3 {
-      font-size: 1.1rem;
-      margin-bottom: 10px;
-      color: #fff;
-      font-weight: 600;
-    }
-
-    .features p {
-      font-size: 0.95rem;
-      margin-bottom: 25px;
-      line-height: 1.5;
     }
 
     input[type="email"] {
@@ -94,7 +87,9 @@
       outline: none;
       transition: all 0.3s ease;
     }
-    input[type="email"]::placeholder { color: #bbb; }
+    input[type="email"]::placeholder {
+      color: #bbb;
+    }
     input[type="email"]:focus {
       border-color: #ffb347;
       background: rgba(255,255,255,0.15);
@@ -114,7 +109,7 @@
     }
     button:hover {
       transform: translateY(-3px);
-      box-shadow: 0 10px 25px rgba(255,152,0,0.6);
+      box-shadow: 0 10px 25px rgba(255,152,0,0.5);
     }
 
     .success {
@@ -124,40 +119,22 @@
     }
 
     footer {
-      margin-top: 40px;
+      margin-top: 30px;
       font-size: 0.8rem;
       color: #aaa;
     }
   </style>
 </head>
 <body>
-  <div class="overlay"></div>
-
   <div class="container">
     <h1>Smellify</h1>
-    <p class="subtitle">
-      Your invisible luxury companion.<br>
-      Smellify ensures you radiate freshness, elegance, and confidence in every moment.
-    </p>
-
-    <div class="features">
-      <h3>✨ Smart Monitoring</h3>
-      <p>Track your daily freshness levels with discreet AI-driven reminders.</p>
-
-      <h3>🌿 Tailored Guidance</h3>
-      <p>Personalized lifestyle tips to keep you always at your best.</p>
-
-      <h3>💎 Confidence Redefined</h3>
-      <p>Step into meetings, dates, and life with elegance that leaves a lasting impression.</p>
-    </div>
-
+    <p class="subtitle">Zero Stink. Maximum Confidence. No more awkward moments. Join our waitlist today.</p>
     <form id="waitlistForm">
       <input type="email" id="email" placeholder="Enter your email" required>
       <br>
       <button type="submit">Join the Waitlist</button>
     </form>
     <p id="message" class="success"></p>
-
     <footer>© 2025 Smellify. All rights reserved.</footer>
   </div>
 
@@ -178,12 +155,12 @@
           body: `email=${encodeURIComponent(email)}`
         });
 
-        message.textContent = "✅ You're on the list. Welcome to Smellify.";
+        message.textContent = "✅ Thanks for joining Smellify!";
         form.reset();
 
       } catch (err) {
         console.error(err);
-        message.textContent = "⚠️ Something went wrong, please try again.";
+        message.textContent = "⚠️ Oops! Something went wrong.";
       }
     });
   </script>
