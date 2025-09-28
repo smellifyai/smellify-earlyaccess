@@ -73,6 +73,12 @@
       margin-bottom: 35px;
       color: #ddd;
       font-weight: 300;
+      line-height: 1.4;
+    }
+
+    p.subtitle .small-gap {
+      display: block;
+      margin-top: 4px; /* small elegant distance */
     }
 
     input[type="email"] {
@@ -128,7 +134,10 @@
 <body>
   <div class="container">
     <h1>Smellify</h1>
-    <p class="subtitle">Zero Stink. No more awkward moments.          Join our waitlist today.</p>
+    <p class="subtitle">
+      Zero Stink. No more awkward moments.<br>
+      <span class="small-gap">Join our waitlist today.</span>
+    </p>
     <form id="waitlistForm">
       <input type="email" id="email" placeholder="Enter your email" required>
       <br>
