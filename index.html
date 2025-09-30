@@ -25,176 +25,45 @@
       color: var(--text);
       background: linear-gradient(135deg, var(--bg1), var(--bg2));
     }
-    .wrap {
-      min-height: 100%;
-      display: grid;
-      place-items: center;
-      padding: 24px;
-      position: relative;
-      overflow: hidden;
-    }
-    .wrap::before, .wrap::after {
-      content: "";
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(120px);
-      opacity: .5;
-      z-index: 0;
-    }
-    .wrap::before {
-      width: 520px; height: 520px;
-      background: radial-gradient(circle, rgba(212,175,55,.18), transparent 70%);
-      top: -120px; left: -140px;
-      animation: float 8s ease-in-out infinite alternate;
-    }
-    .wrap::after {
-      width: 480px; height: 480px;
-      background: radial-gradient(circle, rgba(255,255,255,.08), transparent 70%);
-      right: -140px; bottom: -100px;
-      animation: float 10s ease-in-out infinite alternate-reverse;
-    }
+    .wrap { min-height: 100%; display: grid; place-items: center; padding: 24px; position: relative; overflow: hidden; }
+    .wrap::before, .wrap::after { content: ""; position: absolute; border-radius: 50%; filter: blur(120px); opacity: .5; z-index: 0; }
+    .wrap::before { width: 520px; height: 520px; background: radial-gradient(circle, rgba(212,175,55,.18), transparent 70%); top: -120px; left: -140px; animation: float 8s ease-in-out infinite alternate; }
+    .wrap::after { width: 480px; height: 480px; background: radial-gradient(circle, rgba(255,255,255,.08), transparent 70%); right: -140px; bottom: -100px; animation: float 10s ease-in-out infinite alternate-reverse; }
     @keyframes float { from { transform: translateY(0); } to { transform: translateY(36px); } }
 
-    .card {
-      position: relative;
-      z-index: 1;
-      width: 100%;
-      max-width: 1100px;
-      background: var(--glass);
-      border: 1px solid var(--stroke);
-      border-radius: 24px;
-      box-shadow: 0 22px 60px rgba(0,0,0,.65);
-      backdrop-filter: blur(18px);
-      padding: 48px 40px;
-    }
-    @media (max-width: 768px) {
-      .card { padding: 32px 24px; }
-    }
+    .card { position: relative; z-index: 1; width: 100%; max-width: 1100px; background: var(--glass); border: 1px solid var(--stroke); border-radius: 24px; box-shadow: 0 22px 60px rgba(0,0,0,.65); backdrop-filter: blur(18px); padding: 48px 40px; }
+    @media (max-width: 768px) { .card { padding: 32px 24px; } }
 
-    header h1 {
-      margin: 6px 0 20px;
-      font-size: clamp(32px, 5.5vw, 56px);
-      font-weight: 900;
-      line-height: 1.15;
-      background: linear-gradient(90deg, var(--brand1), #fff8dc);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-    header p {
-      margin: 0 0 8px;
-      color: var(--muted);
-      font-size: 19px;
-      line-height: 1.6;
-      max-width: 680px;
-    }
+    header h1 { margin: 6px 0 20px; font-size: clamp(32px, 5.5vw, 56px); font-weight: 900; line-height: 1.15; background: linear-gradient(90deg, var(--brand1), #fff8dc); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    header p { margin: 0 0 8px; color: var(--muted); font-size: 19px; line-height: 1.6; max-width: 680px; }
 
-    .grid {
-      display: grid;
-      gap: 32px;
-      margin-top: 48px;
-      grid-template-columns: 1fr;
-    }
-    @media (min-width: 880px) {
-      .grid { grid-template-columns: 1fr 1fr; }
-    }
+    .grid { display: grid; gap: 32px; margin-top: 48px; grid-template-columns: 1fr; }
+    @media (min-width: 880px) { .grid { grid-template-columns: 1fr 1fr; } }
 
-    .section {
-      background: rgba(255,255,255,.03);
-      border: 1px solid var(--stroke);
-      border-radius: 16px;
-      padding: 28px;
-    }
-    .section h3 {
-      margin: 0 0 16px;
-      font-size: 22px;
-      font-weight: 700;
-      color: var(--brand1);
-    }
-    .section p, .bullets li {
-      margin: 0;
-      color: var(--muted);
-      font-size: 16px;
-      line-height: 1.7;
-    }
-    .bullets {
-      margin: 12px 0 0 20px;
-      padding: 0;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-    .stack {
-      display: flex;
-      flex-direction: column;
-      gap: 24px;
-    }
+    .section { background: rgba(255,255,255,.03); border: 1px solid var(--stroke); border-radius: 16px; padding: 28px; }
+    .section h3 { margin: 0 0 16px; font-size: 22px; font-weight: 700; color: var(--brand1); }
+    .section p, .bullets li { margin: 0; color: var(--muted); font-size: 16px; line-height: 1.7; }
+    .bullets { margin: 12px 0 0 20px; padding: 0; display: flex; flex-direction: column; gap: 12px; }
+    .stack { display: flex; flex-direction: column; gap: 24px; }
 
-    form {
-      display: grid;
-      gap: 12px;
-      margin-top: 8px;
-    }
+    form { display: grid; gap: 12px; margin-top: 8px; }
     label { font-size: 13px; color: var(--muted); }
-    input, textarea, button {
-      width: 100%;
-      border-radius: 12px;
-      border: 1px solid var(--stroke);
-      background: rgba(255,255,255,.08);
-      color: var(--text);
-      padding: 14px 14px;
-      font-size: 15px;
-      outline: none;
-      transition: border-color .2s, background .2s, transform .2s, box-shadow .2s;
-    }
+    input, textarea, button { width: 100%; border-radius: 12px; border: 1px solid var(--stroke); background: rgba(255,255,255,.08); color: var(--text); padding: 14px 14px; font-size: 15px; outline: none; transition: border-color .2s, background .2s, transform .2s, box-shadow .2s; }
     textarea { min-height: 96px; resize: vertical; }
     input::placeholder, textarea::placeholder { color: #aeb7c4; }
-
     input:focus, textarea:focus { border-color: var(--brand1); background: rgba(255,255,255,.12); }
 
-    .cta {
-      display: flex;
-      gap: 10px;
-      align-items: center;
-      margin-top: 6px;
-    }
-    .btn {
-      width: auto;
-      background: linear-gradient(90deg, var(--brand1), var(--brand2));
-      color: #0a0a0a;
-      font-weight: 800;
-      letter-spacing: .2px;
-      border: none;
-      cursor: pointer;
-      box-shadow: 0 8px 28px rgba(212,175,55,.45);
-    }
+    .cta { display: flex; gap: 10px; align-items: center; margin-top: 6px; }
+    .btn { width: auto; background: linear-gradient(90deg, var(--brand1), var(--brand2)); color: #0a0a0a; font-weight: 800; letter-spacing: .2px; border: none; cursor: pointer; box-shadow: 0 8px 28px rgba(212,175,55,.45); }
     .btn:hover { transform: translateY(-2px); box-shadow: 0 14px 34px rgba(212,175,55,.55); }
 
-    .note {
-      font-size: 13px;
-      color: var(--muted);
-      margin-left: 2px;
-    }
+    .note { font-size: 13px; color: var(--muted); margin-left: 2px; }
     .success { color: var(--ok); font-weight: 700; margin-top: 8px; }
     .error { color: var(--warn); font-weight: 700; margin-top: 8px; }
 
-    .deadline {
-      display: inline-block;
-      margin-top: 10px;
-      padding: 8px 12px;
-      background: rgba(212,175,55,.14);
-      border: 1px solid rgba(212,175,55,.35);
-      color: #fff8dc;
-      border-radius: 10px;
-      font-size: 13px;
-      font-weight: 600;
-    }
+    .deadline { display: inline-block; margin-top: 10px; padding: 8px 12px; background: rgba(212,175,55,.14); border: 1px solid rgba(212,175,55,.35); color: #fff8dc; border-radius: 10px; font-size: 13px; font-weight: 600; }
 
-    footer {
-      margin-top: 18px;
-      text-align: center;
-      color: var(--muted);
-      font-size: 12px;
-    }
+    footer { margin-top: 18px; text-align: center; color: var(--muted); font-size: 12px; }
   </style>
 </head>
 <body>
@@ -203,7 +72,7 @@
       <header>
         <h1>Zero stink. No more awkward moments.</h1>
         <p>Join the Smellify waitlist and take control of your hygiene, diet, sweat, and daily freshness with smart tools.</p>
-        <div class="deadline">Sign up before October 1 to get lifetime access</div>
+        <div class="deadline">Sign up before October 2 to get lifetime access</div>
       </header>
 
       <section class="grid">
@@ -242,10 +111,6 @@
           <p class="note">Only 2 minutes. We read every response.</p>
           <form id="waitlistForm">
             <div>
-              <label for="name">Name</label>
-              <input id="name" name="name" type="text" placeholder="Your name" required />
-            </div>
-            <div>
               <label for="email">Email</label>
               <input id="email" name="email" type="email" placeholder="you@example.com" required />
             </div>
@@ -276,18 +141,17 @@
       msg.className = "";
       msg.textContent = "";
 
-      const name  = document.getElementById("name").value.trim();
       const email = document.getElementById("email").value.trim();
       const goal  = document.getElementById("goal").value.trim();
 
-      if (!name || !email) {
+      if (!email) {
         msg.className = "error";
-        msg.textContent = "Please complete all required fields.";
+        msg.textContent = "Please enter your email.";
         return;
       }
 
-      const url = "https://script.google.com/macros/s/your-google-script-id/exec"; // replace with your endpoint
-      const body = new URLSearchParams({ name, email, goal });
+      const url = "https://script.google.com/macros/s/AKfycbyAWth-tZAZrO2En7JCqcMmtNP8awplpnDLBp-o9XS6jOxFvyjSIxeo2Z5MojXyLvu7/exec"; // replace with your endpoint
+      const body = new URLSearchParams({ email, goal });
 
       msg.className = "success";
       msg.textContent = "Thank you. You are on the list.";
