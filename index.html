@@ -1,224 +1,204 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Smellify — Join the Waitlist</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smellify – Join the Waitlist</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
     body {
-      background: #0f2027;
-      color: #fff;
-      line-height: 1.5;
-    }
-    .hero {
-      position: relative;
-      min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
-      text-align: center;
-      padding: 0 20px;
+      height: 100vh;
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      color: #fff;
       overflow: hidden;
+      padding: 20px;
     }
-    .hero::before, .hero::after {
+
+    /* Background glow */
+    body::before, body::after {
       content: "";
       position: absolute;
       border-radius: 50%;
       filter: blur(120px);
-      opacity: 0.4;
-    }
-    .hero::before {
-      width: 600px; height: 600px;
-      background: radial-gradient(circle, rgba(255,183,77,0.25), transparent 60%);
-      top: -150px; left: -200px;
       animation: float 8s infinite alternate ease-in-out;
+      z-index: 0;
     }
-    .hero::after {
-      width: 500px; height: 500px;
+    body::before {
+      width: 600px; height: 600px;
       background: radial-gradient(circle, rgba(255,255,255,0.15), transparent 70%);
+      top: -150px; left: -150px;
+    }
+    body::after {
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(255,183,77,0.25), transparent 70%);
       bottom: -100px; right: -150px;
-      animation: float 10s infinite alternate-reverse ease-in-out;
+      animation-duration: 10s;
+      animation-direction: alternate-reverse;
     }
     @keyframes float {
       from { transform: translateY(0px); }
       to { transform: translateY(40px); }
     }
 
-    .hero .content {
-      position: relative; z-index: 2;
-      max-width: 600px;
-    }
-    .hero h1 {
-      font-size: 3rem;
-      font-weight: 700;
-      margin-bottom: 12px;
-      background: linear-gradient(90deg, #ffb347, #ffcc33);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-    .hero p.subtitle {
-      font-size: 1.2rem;
-      color: #ddd;
-      margin-bottom: 30px;
-    }
-    .hero form {
+    .container {
+      position: relative;
+      z-index: 2;
+      background: rgba(255,255,255,0.05);
+      padding: 50px 40px;
+      border-radius: 24px;
+      text-align: center;
+      max-width: 800px;
+      width: 100%;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.15);
       display: flex;
       flex-direction: column;
-      align-items: center;
-      gap: 16px;
-    }
-    .hero input[type="email"] {
-      width: 100%;
-      max-width: 400px;
-      padding: 16px;
-      border: 1px solid rgba(255,255,255,0.25);
-      border-radius: 12px;
-      background: rgba(255,255,255,0.1);
-      color: #fff;
-      font-size: 1rem;
-      transition: background 0.3s, border-color 0.3s;
-    }
-    .hero input::placeholder {
-      color: #bbb;
-    }
-    .hero input:focus {
-      background: rgba(255,255,255,0.15);
-      border-color: #ffb347;
-      outline: none;
-    }
-    .hero button {
-      padding: 16px 40px;
-      background: linear-gradient(90deg, #ff9800, #ffb347);
-      border: none;
-      border-radius: 12px;
-      font-size: 1.1rem;
-      font-weight: 600;
-      color: #fff;
-      cursor: pointer;
-      transition: transform 0.2s, box-shadow 0.2s;
-      box-shadow: 0 5px 15px rgba(255,152,0,0.4);
-    }
-    .hero button:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 25px rgba(255,152,0,0.5);
-    }
-    .hero .success-msg {
-      margin-top: 20px;
-      color: #4caf50;
-      font-weight: 600;
+      gap: 25px;
     }
 
-    /* Feature / “What is Smellify” section */
-    .features {
-      background: #1c3040;
-      padding: 60px 20px;
-      text-align: center;
-    }
-    .features h2 {
-      font-size: 2rem;
-      margin-bottom: 20px;
+    h1 {
+      font-size: 3rem;
+      font-weight: 700;
       background: linear-gradient(90deg, #ffb347, #ffcc33);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-    }
-    .features .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 30px;
-      margin-top: 30px;
-    }
-    .features .card {
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 16px;
-      padding: 30px 20px;
-      transition: background 0.3s;
-    }
-    .features .card:hover {
-      background: rgba(255,255,255,0.1);
-    }
-    .features .card .icon {
-      font-size: 2.5rem;
-      margin-bottom: 16px;
-      color: #ffb347;
-    }
-    .features .card h3 {
-      font-size: 1.2rem;
-      margin-bottom: 12px;
-      font-weight: 600;
-    }
-    .features .card p {
-      color: #ccc;
-      font-size: 0.95rem;
+      margin-bottom: 10px;
     }
 
-    /* Footer */
+    .subtitle {
+      font-size: 1.2rem;
+      color: #ddd;
+      font-weight: 300;
+      line-height: 1.5;
+      margin-bottom: 20px;
+    }
+
+    .features {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+
+    .feature-card {
+      background: rgba(255,255,255,0.08);
+      padding: 20px;
+      border-radius: 16px;
+      flex: 1 1 220px;
+      min-width: 220px;
+      max-width: 240px;
+      text-align: left;
+      border: 1px solid rgba(255,255,255,0.15);
+    }
+
+    .feature-card h3 {
+      font-size: 1.1rem;
+      margin-bottom: 8px;
+      color: #ffcc66;
+    }
+
+    .feature-card p {
+      font-size: 0.9rem;
+      color: #ccc;
+      line-height: 1.4;
+    }
+
+    form {
+      margin-top: 10px;
+    }
+    input[type="email"] {
+      width: 70%;
+      padding: 14px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.25);
+      margin-bottom: 15px;
+      font-size: 1rem;
+      background: rgba(255,255,255,0.1);
+      color: #fff;
+      outline: none;
+      transition: all 0.3s ease;
+    }
+    input[type="email"]::placeholder { color: #bbb; }
+    input[type="email"]:focus {
+      border-color: #ffb347;
+      background: rgba(255,255,255,0.15);
+    }
+
+    button {
+      padding: 14px 30px;
+      background: linear-gradient(90deg, #ff9800, #ffb347);
+      color: #fff;
+      border: none;
+      border-radius: 12px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 5px 15px rgba(255,152,0,0.4);
+    }
+    button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(255,152,0,0.5);
+    }
+
+    .success {
+      margin-top: 15px;
+      font-weight: 600;
+      color: #4caf50;
+    }
+
     footer {
-      text-align: center;
-      padding: 30px 20px;
-      color: #aaa;
+      margin-top: 20px;
       font-size: 0.8rem;
+      color: #aaa;
     }
   </style>
 </head>
-
 <body>
-  <section class="hero">
-    <div class="content">
-      <h1>Smellify</h1>
-      <p class="subtitle">Zero stink. No awkward moments.<br>Join the waitlist today.</p>
+  <div class="container">
+    <h1>Smellify</h1>
+    <p class="subtitle">
+      The smart hygiene app that helps you stay fresh, confident, and odor-free all day.
+    </p>
 
-      <form id="waitlistForm">
-        <input type="email" id="email" placeholder="Your email address" required />
-        <button type="submit">Join the Waitlist</button>
-        <p id="message" class="success-msg"></p>
-      </form>
-    </div>
-  </section>
-
-  <section class="features">
-    <h2>What Smellify Does</h2>
-    <div class="grid">
-      <div class="card">
-        <div class="icon">🧼</div>
-        <h3>Routine Tracker</h3>
-        <p>Set reminders for showering, deodorant, oral care, and laundry so you always stay fresh.</p>
+    <div class="features">
+      <div class="feature-card">
+        <h3>🧼 Daily Routines</h3>
+        <p>Smart reminders for showers, deodorant, laundry, and oral care.</p>
       </div>
-      <div class="card">
-        <div class="icon">💧</div>
-        <h3>Sweat Insights</h3>
-        <p>Track your sweat patterns and get personalized tips to manage odor better.</p>
+      <div class="feature-card">
+        <h3>🥗 Diet & Sweat Insights</h3>
+        <p>Understand how your food and sweat patterns impact body odor.</p>
       </div>
-      <div class="card">
-        <div class="icon">🥗</div>
-        <h3>Diet & Odor</h3>
-        <p>See how foods impact your natural scent, and get guidance on what to eat and avoid.</p>
+      <div class="feature-card">
+        <h3>⚡ Emergency Fresh Mode</h3>
+        <p>Quick checklist for interviews, dates, or big events.</p>
       </div>
-      <div class="card">
-        <div class="icon">⚡</div>
-        <h3>Emergency Fresh Mode</h3>
-        <p>A quick checklist to freshen up before a date, meeting, or big moment.</p>
-      </div>
-      <div class="card">
-        <div class="icon">🧴</div>
-        <h3>Product Journal</h3>
-        <p>Record which deodorants or soaps work best for you — and see what gives long-lasting freshness.</p>
-      </div>
-      <div class="card">
-        <div class="icon">💬</div>
-        <h3>Anonymous Advice</h3>
-        <p>Ask hygiene questions privately and learn from community tips without judgment.</p>
+      <div class="feature-card">
+        <h3>🙋 Anonymous Q&A</h3>
+        <p>Ask hygiene questions without embarrassment and get real solutions.</p>
       </div>
     </div>
-  </section>
 
-  <footer>© 2025 Smellify. All rights reserved.</footer>
+    <form id="waitlistForm">
+      <input type="email" id="email" placeholder="Enter your email" required>
+      <br>
+      <button type="submit">Join the Waitlist</button>
+    </form>
+    <p id="message" class="success"></p>
+    <footer>© 2025 Smellify. All rights reserved.</footer>
+  </div>
 
   <script>
     const form = document.getElementById("waitlistForm");
-    const msg = document.getElementById("message");
+    const message = document.getElementById("message");
+
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
       const email = document.getElementById("email").value;
@@ -231,11 +211,13 @@
           headers: { "Content-Type": "application/x-www-form-urlencoded" },
           body: `email=${encodeURIComponent(email)}`
         });
-        msg.textContent = "✅ Thanks for joining Smellify!";
+
+        message.textContent = "✅ Thanks for joining Smellify!";
         form.reset();
+
       } catch (err) {
         console.error(err);
-        msg.textContent = "⚠️ Oops! Something went wrong.";
+        message.textContent = "⚠️ Oops! Something went wrong.";
       }
     });
   </script>
