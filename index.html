@@ -9,12 +9,14 @@
     * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
     body {
       display: flex;
+      flex-direction: column;
       align-items: center;
-      justify-content: center;
-      height: 100vh;
+      justify-content: flex-start;
+      min-height: 100vh;
       background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-      overflow: hidden;
+      overflow-x: hidden;
       color: #fff;
+      padding: 40px 20px;
     }
 
     /* Elegant animated background blur */
@@ -52,11 +54,12 @@
       padding: 60px 40px;
       border-radius: 24px;
       text-align: center;
-      max-width: 500px;
+      max-width: 600px;
       width: 100%;
       box-shadow: 0 20px 60px rgba(0,0,0,0.6);
       backdrop-filter: blur(20px);
       border: 1px solid rgba(255,255,255,0.15);
+      margin-bottom: 40px;
     }
 
     h1 {
@@ -74,11 +77,6 @@
       color: #ddd;
       font-weight: 300;
       line-height: 1.4;
-    }
-
-    p.subtitle .small-gap {
-      display: block;
-      margin-top: 4px; /* small elegant distance */
     }
 
     input[type="email"] {
@@ -124,10 +122,33 @@
       color: #4caf50;
     }
 
+    .explanation {
+      max-width: 800px;
+      text-align: center;
+      margin-top: 20px;
+      line-height: 1.6;
+      font-size: 1rem;
+      color: #ddd;
+    }
+
+    .explanation h2 {
+      font-size: 1.8rem;
+      margin-bottom: 15px;
+      font-weight: 600;
+      background: linear-gradient(90deg, #ffb347, #ffcc33);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .explanation p {
+      margin-bottom: 15px;
+    }
+
     footer {
       margin-top: 30px;
       font-size: 0.8rem;
       color: #aaa;
+      text-align: center;
     }
   </style>
 </head>
@@ -136,7 +157,7 @@
     <h1>Smellify.</h1>
     <p class="subtitle">
       Zero Stink. No more awkward moments.<br>
-      <span class="small-gap">Join our waitlist today.</span>
+      Join our waitlist today.
     </p>
     <form id="waitlistForm">
       <input type="email" id="email" placeholder="Enter your email" required>
@@ -144,8 +165,19 @@
       <button type="submit">Join the Waitlist</button>
     </form>
     <p id="message" class="success"></p>
-    <footer>© 2025 Smellify. All rights reserved.</footer>
   </div>
+
+  <div class="explanation">
+    <h2>What is Smellify?</h2>
+    <p>Smellify is your personal hygiene companion app designed to keep you fresh, confident, and odor-free all day. 
+       It is more than just reminders. It understands how daily routines, sweat, and even diet affect body odor, and helps you stay ahead of it.</p>
+    <p>With features like routine trackers, subtle freshness alerts, emergency fresh checklists, and an anonymous advice community, 
+       Smellify gives you practical tools to stay in control of your hygiene. Whether you are heading to work, the gym, or a date, 
+       Smellify ensures you never have to worry about awkward moments again.</p>
+    <p>Smellify is not just about hygiene. It is about reclaiming confidence, feeling at ease in your own skin, and living your day without second-guessing how you smell.</p>
+  </div>
+
+  <footer>© 2025 Smellify. All rights reserved.</footer>
 
   <script>
     const form = document.getElementById("waitlistForm");
