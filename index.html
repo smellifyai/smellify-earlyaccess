@@ -1,45 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Smellify – Join the Waitlist</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Smellify — Join the Waitlist</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet" />
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
     body {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
-      min-height: 100vh;
-      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-      overflow-x: hidden;
+      background: #0f2027;
       color: #fff;
-      padding: 40px 20px;
+      line-height: 1.5;
     }
-
-    /* Elegant animated background blur */
-    body::before {
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 0 20px;
+      overflow: hidden;
+    }
+    .hero::before, .hero::after {
       content: "";
       position: absolute;
-      width: 600px;
-      height: 600px;
-      background: radial-gradient(circle, rgba(255,255,255,0.15), transparent 70%);
-      top: -150px;
-      left: -150px;
+      border-radius: 50%;
       filter: blur(120px);
+      opacity: 0.4;
+    }
+    .hero::before {
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(255,183,77,0.25), transparent 60%);
+      top: -150px; left: -200px;
       animation: float 8s infinite alternate ease-in-out;
     }
-    body::after {
-      content: "";
-      position: absolute;
-      width: 500px;
-      height: 500px;
-      background: radial-gradient(circle, rgba(255,183,77,0.25), transparent 70%);
-      bottom: -100px;
-      right: -150px;
-      filter: blur(100px);
+    .hero::after {
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(255,255,255,0.15), transparent 70%);
+      bottom: -100px; right: -150px;
       animation: float 10s infinite alternate-reverse ease-in-out;
     }
     @keyframes float {
@@ -47,142 +46,179 @@
       to { transform: translateY(40px); }
     }
 
-    .container {
-      position: relative;
-      z-index: 2;
-      background: rgba(255,255,255,0.05);
-      padding: 60px 40px;
-      border-radius: 24px;
-      text-align: center;
+    .hero .content {
+      position: relative; z-index: 2;
       max-width: 600px;
-      width: 100%;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.6);
-      backdrop-filter: blur(20px);
-      border: 1px solid rgba(255,255,255,0.15);
-      margin-bottom: 40px;
     }
-
-    h1 {
-      font-size: 2.5rem;
+    .hero h1 {
+      font-size: 3rem;
       font-weight: 700;
-      margin-bottom: 15px;
+      margin-bottom: 12px;
       background: linear-gradient(90deg, #ffb347, #ffcc33);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
-
-    p.subtitle {
-      font-size: 1.1rem;
-      margin-bottom: 35px;
+    .hero p.subtitle {
+      font-size: 1.2rem;
       color: #ddd;
-      font-weight: 300;
-      line-height: 1.4;
+      margin-bottom: 30px;
     }
-
-    input[type="email"] {
-      width: 80%;
+    .hero form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+    .hero input[type="email"] {
+      width: 100%;
+      max-width: 400px;
       padding: 16px;
-      border-radius: 12px;
       border: 1px solid rgba(255,255,255,0.25);
-      margin-bottom: 20px;
-      font-size: 1rem;
+      border-radius: 12px;
       background: rgba(255,255,255,0.1);
       color: #fff;
-      outline: none;
-      transition: all 0.3s ease;
+      font-size: 1rem;
+      transition: background 0.3s, border-color 0.3s;
     }
-    input[type="email"]::placeholder {
+    .hero input::placeholder {
       color: #bbb;
     }
-    input[type="email"]:focus {
-      border-color: #ffb347;
+    .hero input:focus {
       background: rgba(255,255,255,0.15);
+      border-color: #ffb347;
+      outline: none;
     }
-
-    button {
+    .hero button {
       padding: 16px 40px;
       background: linear-gradient(90deg, #ff9800, #ffb347);
-      color: #fff;
       border: none;
       border-radius: 12px;
-      font-size: 1rem;
+      font-size: 1.1rem;
       font-weight: 600;
+      color: #fff;
       cursor: pointer;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      transition: transform 0.2s, box-shadow 0.2s;
       box-shadow: 0 5px 15px rgba(255,152,0,0.4);
     }
-    button:hover {
-      transform: translateY(-3px);
+    .hero button:hover {
+      transform: translateY(-2px);
       box-shadow: 0 10px 25px rgba(255,152,0,0.5);
     }
-
-    .success {
-      margin-top: 25px;
-      font-weight: 600;
-      color: #4caf50;
-    }
-
-    .explanation {
-      max-width: 800px;
-      text-align: center;
+    .hero .success-msg {
       margin-top: 20px;
-      line-height: 1.6;
-      font-size: 1rem;
-      color: #ddd;
+      color: #4caf50;
+      font-weight: 600;
     }
 
-    .explanation h2 {
-      font-size: 1.8rem;
-      margin-bottom: 15px;
-      font-weight: 600;
+    /* Feature / “What is Smellify” section */
+    .features {
+      background: #1c3040;
+      padding: 60px 20px;
+      text-align: center;
+    }
+    .features h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
       background: linear-gradient(90deg, #ffb347, #ffcc33);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
-
-    .explanation p {
-      margin-bottom: 15px;
+    .features .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 30px;
+      margin-top: 30px;
+    }
+    .features .card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 16px;
+      padding: 30px 20px;
+      transition: background 0.3s;
+    }
+    .features .card:hover {
+      background: rgba(255,255,255,0.1);
+    }
+    .features .card .icon {
+      font-size: 2.5rem;
+      margin-bottom: 16px;
+      color: #ffb347;
+    }
+    .features .card h3 {
+      font-size: 1.2rem;
+      margin-bottom: 12px;
+      font-weight: 600;
+    }
+    .features .card p {
+      color: #ccc;
+      font-size: 0.95rem;
     }
 
+    /* Footer */
     footer {
-      margin-top: 30px;
-      font-size: 0.8rem;
-      color: #aaa;
       text-align: center;
+      padding: 30px 20px;
+      color: #aaa;
+      font-size: 0.8rem;
     }
   </style>
 </head>
-<body>
-  <div class="container">
-    <h1>Smellify.</h1>
-    <p class="subtitle">
-      Zero Stink. No more awkward moments.<br>
-      Join our waitlist today.
-    </p>
-    <form id="waitlistForm">
-      <input type="email" id="email" placeholder="Enter your email" required>
-      <br>
-      <button type="submit">Join the Waitlist</button>
-    </form>
-    <p id="message" class="success"></p>
-  </div>
 
-  <div class="explanation">
-    <h2>What is Smellify?</h2>
-    <p>Smellify is your personal hygiene companion app designed to keep you fresh, confident, and odor-free all day. 
-       It is more than just reminders. It understands how daily routines, sweat, and even diet affect body odor, and helps you stay ahead of it.</p>
-    <p>With features like routine trackers, subtle freshness alerts, emergency fresh checklists, and an anonymous advice community, 
-       Smellify gives you practical tools to stay in control of your hygiene. Whether you are heading to work, the gym, or a date, 
-       Smellify ensures you never have to worry about awkward moments again.</p>
-    <p>Smellify is not just about hygiene. It is about reclaiming confidence, feeling at ease in your own skin, and living your day without second-guessing how you smell.</p>
-  </div>
+<body>
+  <section class="hero">
+    <div class="content">
+      <h1>Smellify</h1>
+      <p class="subtitle">Zero stink. No awkward moments.<br>Join the waitlist today.</p>
+
+      <form id="waitlistForm">
+        <input type="email" id="email" placeholder="Your email address" required />
+        <button type="submit">Join the Waitlist</button>
+        <p id="message" class="success-msg"></p>
+      </form>
+    </div>
+  </section>
+
+  <section class="features">
+    <h2>What Smellify Does</h2>
+    <div class="grid">
+      <div class="card">
+        <div class="icon">🧼</div>
+        <h3>Routine Tracker</h3>
+        <p>Set reminders for showering, deodorant, oral care, and laundry so you always stay fresh.</p>
+      </div>
+      <div class="card">
+        <div class="icon">💧</div>
+        <h3>Sweat Insights</h3>
+        <p>Track your sweat patterns and get personalized tips to manage odor better.</p>
+      </div>
+      <div class="card">
+        <div class="icon">🥗</div>
+        <h3>Diet & Odor</h3>
+        <p>See how foods impact your natural scent, and get guidance on what to eat and avoid.</p>
+      </div>
+      <div class="card">
+        <div class="icon">⚡</div>
+        <h3>Emergency Fresh Mode</h3>
+        <p>A quick checklist to freshen up before a date, meeting, or big moment.</p>
+      </div>
+      <div class="card">
+        <div class="icon">🧴</div>
+        <h3>Product Journal</h3>
+        <p>Record which deodorants or soaps work best for you — and see what gives long-lasting freshness.</p>
+      </div>
+      <div class="card">
+        <div class="icon">💬</div>
+        <h3>Anonymous Advice</h3>
+        <p>Ask hygiene questions privately and learn from community tips without judgment.</p>
+      </div>
+    </div>
+  </section>
 
   <footer>© 2025 Smellify. All rights reserved.</footer>
 
   <script>
     const form = document.getElementById("waitlistForm");
-    const message = document.getElementById("message");
-
+    const msg = document.getElementById("message");
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
       const email = document.getElementById("email").value;
@@ -195,13 +231,11 @@
           headers: { "Content-Type": "application/x-www-form-urlencoded" },
           body: `email=${encodeURIComponent(email)}`
         });
-
-        message.textContent = "✅ Thanks for joining Smellify!";
+        msg.textContent = "✅ Thanks for joining Smellify!";
         form.reset();
-
       } catch (err) {
         console.error(err);
-        message.textContent = "⚠️ Oops! Something went wrong.";
+        msg.textContent = "⚠️ Oops! Something went wrong.";
       }
     });
   </script>
