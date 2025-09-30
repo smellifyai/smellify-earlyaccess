@@ -2,180 +2,306 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Smellify – Join the Waitlist</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet" />
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
-    body {
-      background: #0f2027; 
-      color: #fff;
-      line-height: 1.5;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-      padding: 20px;
+    * { box-sizing: border-box; }
+    :root {
+      --bg1: #0a0a0a;
+      --bg2: #1a1a1a;
+      --glass: rgba(255,255,255,0.04);
+      --stroke: rgba(255,255,255,0.12);
+      --text: #f8f8f8;
+      --muted: #cfcfcf;
+      --brand1: #d4af37; /* gold */
+      --brand2: #b8860b; /* darker golden brown */
+      --ok: #37d67a;
+      --warn: #ff4d4f;
     }
-    .wrapper {
-      max-width: 800px;
+    html, body {
+      margin: 0; padding: 0; height: 100%;
+      font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color: var(--text);
+      background: linear-gradient(135deg, var(--bg1), var(--bg2));
+    }
+    .wrap {
+      min-height: 100%;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+      position: relative;
+      overflow: hidden;
+    }
+    .wrap::before, .wrap::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(120px);
+      opacity: .5;
+      z-index: 0;
+    }
+    .wrap::before {
+      width: 520px; height: 520px;
+      background: radial-gradient(circle, rgba(212,175,55,.18), transparent 70%);
+      top: -120px; left: -140px;
+      animation: float 8s ease-in-out infinite alternate;
+    }
+    .wrap::after {
+      width: 480px; height: 480px;
+      background: radial-gradient(circle, rgba(255,255,255,.08), transparent 70%);
+      right: -140px; bottom: -100px;
+      animation: float 10s ease-in-out infinite alternate-reverse;
+    }
+    @keyframes float { from { transform: translateY(0); } to { transform: translateY(36px); } }
+
+    .card {
+      position: relative;
+      z-index: 1;
       width: 100%;
-      text-align: center;
+      max-width: 1100px;
+      background: var(--glass);
+      border: 1px solid var(--stroke);
+      border-radius: 24px;
+      box-shadow: 0 22px 60px rgba(0,0,0,.65);
+      backdrop-filter: blur(18px);
+      padding: 48px 40px;
     }
-    h1 {
-      font-size: 2.5rem;
-      font-weight: 700;
-      margin-bottom: 15px;
+    @media (max-width: 768px) {
+      .card { padding: 32px 24px; }
     }
-    .highlight {
-      background: linear-gradient(90deg, #ffb347, #ffcc33);
+
+    header h1 {
+      margin: 6px 0 20px;
+      font-size: clamp(32px, 5.5vw, 56px);
+      font-weight: 900;
+      line-height: 1.15;
+      background: linear-gradient(90deg, var(--brand1), #fff8dc);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
-    p.lead {
-      font-size: 1.1rem;
-      margin-bottom: 25px;
-      color: #ddd;
+    header p {
+      margin: 0 0 8px;
+      color: var(--muted);
+      font-size: 19px;
+      line-height: 1.6;
+      max-width: 680px;
     }
+
+    .grid {
+      display: grid;
+      gap: 32px;
+      margin-top: 48px;
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 880px) {
+      .grid { grid-template-columns: 1fr 1fr; }
+    }
+
     .section {
-      margin-bottom: 30px;
+      background: rgba(255,255,255,.03);
+      border: 1px solid var(--stroke);
+      border-radius: 16px;
+      padding: 28px;
     }
-    .section h2 {
-      font-size: 1.8rem;
-      margin-bottom: 12px;
+    .section h3 {
+      margin: 0 0 16px;
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--brand1);
     }
-    .section ul {
-      list-style-type: none;
-      padding-left: 0;
-      text-align: left;
-      display: inline-block;
+    .section p, .bullets li {
+      margin: 0;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.7;
     }
-    .section ul li {
-      margin-bottom: 8px;
-      font-size: 1rem;
-      color: #ddd;
-    }
-    form {
-      margin-top: 20px;
+    .bullets {
+      margin: 12px 0 0 20px;
+      padding: 0;
       display: flex;
       flex-direction: column;
       gap: 12px;
-      align-items: center;
     }
-    input, textarea {
+    .stack {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    form {
+      display: grid;
+      gap: 12px;
+      margin-top: 8px;
+    }
+    label { font-size: 13px; color: var(--muted); }
+    input, textarea, button {
       width: 100%;
-      max-width: 400px;
-      padding: 14px;
-      border-radius: 10px;
-      border: 1px solid rgba(255,255,255,0.3);
-      background: rgba(255,255,255,0.1);
-      color: #fff;
-      font-size: 1rem;
+      border-radius: 12px;
+      border: 1px solid var(--stroke);
+      background: rgba(255,255,255,.08);
+      color: var(--text);
+      padding: 14px 14px;
+      font-size: 15px;
       outline: none;
-      resize: vertical;
+      transition: border-color .2s, background .2s, transform .2s, box-shadow .2s;
     }
-    input::placeholder, textarea::placeholder {
-      color: #bbb;
+    textarea { min-height: 96px; resize: vertical; }
+    input::placeholder, textarea::placeholder { color: #aeb7c4; }
+
+    input:focus, textarea:focus { border-color: var(--brand1); background: rgba(255,255,255,.12); }
+
+    .cta {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      margin-top: 6px;
     }
-    input:focus, textarea:focus {
-      border-color: #ffb347;
-      background: rgba(255,255,255,0.15);
-    }
-    button {
-      padding: 14px 30px;
-      background: linear-gradient(90deg, #ff9800, #ffb347);
-      color: #fff;
+    .btn {
+      width: auto;
+      background: linear-gradient(90deg, var(--brand1), var(--brand2));
+      color: #0a0a0a;
+      font-weight: 800;
+      letter-spacing: .2px;
       border: none;
-      border-radius: 10px;
-      font-size: 1rem;
-      font-weight: 600;
       cursor: pointer;
-      transition: transform 0.2s, box-shadow 0.2s;
-      box-shadow: 0 5px 15px rgba(255,152,0,0.4);
+      box-shadow: 0 8px 28px rgba(212,175,55,.45);
     }
-    button:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 25px rgba(255,152,0,0.5);
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 14px 34px rgba(212,175,55,.55); }
+
+    .note {
+      font-size: 13px;
+      color: var(--muted);
+      margin-left: 2px;
     }
-    .success-msg {
-      color: #4caf50;
-      margin-top: 12px;
+    .success { color: var(--ok); font-weight: 700; margin-top: 8px; }
+    .error { color: var(--warn); font-weight: 700; margin-top: 8px; }
+
+    .deadline {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 8px 12px;
+      background: rgba(212,175,55,.14);
+      border: 1px solid rgba(212,175,55,.35);
+      color: #fff8dc;
+      border-radius: 10px;
+      font-size: 13px;
       font-weight: 600;
     }
+
     footer {
-      margin-top: 30px;
-      font-size: 0.8rem;
-      color: #aaa;
+      margin-top: 18px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 12px;
     }
   </style>
 </head>
 <body>
-  <div class="wrapper">
-    <h1><span class="highlight">Smellify</span></h1>
-    <p class="lead">Zero stink. No more awkward moments.</p>
-    <p class="lead">Join the Smellify waitlist and take control of your hygiene, confidence, and daily freshness.</p>
+  <main class="wrap">
+    <div class="card">
+      <header>
+        <h1>Zero stink. No more awkward moments.</h1>
+        <p>Join the Smellify waitlist and take control of your hygiene, diet, sweat, and daily freshness with smart tools.</p>
+        <div class="deadline">Sign up before October 1 to get lifetime access</div>
+      </header>
 
-    <div class="section">
-      <h2>Who it’s for</h2>
-      <ul>
-        <li>Professionals who want to feel confident during meetings</li>
-        <li>Gym-goers and active people who deal with sweat & odor</li>
-        <li>Anyone who wants to get ahead of stink without stress</li>
-      </ul>
+      <section class="grid">
+        <!-- Left: copy blocks -->
+        <div class="stack">
+          <div class="section">
+            <h3>Who it is for</h3>
+            <ul class="bullets">
+              <li>Professionals who want to feel confident during meetings.</li>
+              <li>Gym-goers and active people dealing with sweat & odor.</li>
+              <li>Anyone embarrassed by diet- or stress-related smells.</li>
+              <li>People who want discreet, reliable hygiene support daily.</li>
+            </ul>
+          </div>
+
+          <div class="section">
+            <h3>What Smellify helps you do</h3>
+            <ul class="bullets">
+              <li>Track daily hygiene routines and get subtle reminders.</li>
+              <li>Understand how diet and sweating patterns affect odor.</li>
+              <li>Use emergency fresh checklists before key moments.</li>
+              <li>Journal and test which products work best for you.</li>
+              <li>Join an anonymous advice community for real tips.</li>
+            </ul>
+          </div>
+
+          <div class="section">
+            <h3>Why Smellify</h3>
+            <p>Smell should never hold you back. Smellify is not about chasing perfection, it is about simple habits and real routines that make confidence effortless—so you can focus on living without worry.</p>
+          </div>
+        </div>
+
+        <!-- Right: form -->
+        <div class="section">
+          <h3>Join the waitlist</h3>
+          <p class="note">Only 2 minutes. We read every response.</p>
+          <form id="waitlistForm">
+            <div>
+              <label for="name">Name</label>
+              <input id="name" name="name" type="text" placeholder="Your name" required />
+            </div>
+            <div>
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" placeholder="you@example.com" required />
+            </div>
+            <div>
+              <label for="goal">What is your biggest hygiene challenge? (optional)</label>
+              <textarea id="goal" name="goal" placeholder="Example: I sweat too much at work, certain foods cause odor, deodorants don’t last long"></textarea>
+            </div>
+
+            <div class="cta">
+              <button class="btn" type="submit">Get early access</button>
+            </div>
+
+            <p id="msg" class="" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+      </section>
+
+      <footer>© 2025 Smellify</footer>
     </div>
-
-    <div class="section">
-      <h2>What Smellify helps you do</h2>
-      <ul>
-        <li>Track daily hygiene routines and reminders</li>
-        <li>Receive insights on how diet and sweat affect odor</li>
-        <li>Use emergency fresh checklists before key moments</li>
-        <li>Journal products and see what works best for *you*</li>
-        <li>Participate anonymously in a hygiene advice community</li>
-      </ul>
-    </div>
-
-    <div class="section">
-      <h2>Why Smellify</h2>
-      <p>We believe smell shouldn’t be a hurdle to confidence. Smellify isn’t about chasing perfection—it’s about supporting real routines, simple habits, and being your best self with less worry.</p>
-    </div>
-
-    <div class="section">
-      <h2>Join the waitlist</h2>
-      <form id="waitlistForm">
-        <input type="text" id="name" placeholder="Name" required />
-        <input type="email" id="email" placeholder="Email" required />
-        <textarea id="challenge" placeholder="What’s your biggest hygiene challenge? (optional)" rows="3"></textarea>
-        <button type="submit">Get early access</button>
-        <div id="message" class="success-msg"></div>
-      </form>
-    </div>
-
-    <footer>© 2025 Smellify</footer>
-  </div>
+  </main>
 
   <script>
     const form = document.getElementById("waitlistForm");
-    const messageDiv = document.getElementById("message");
+    const msg  = document.getElementById("msg");
 
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
-      const name = document.getElementById("name").value;
-      const email = document.getElementById("email").value;
-      const challenge = document.getElementById("challenge").value;
-      const url = "https://your-api-endpoint-here";  // replace with your endpoint
+      msg.className = "";
+      msg.textContent = "";
+
+      const name  = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const goal  = document.getElementById("goal").value.trim();
+
+      if (!name || !email) {
+        msg.className = "error";
+        msg.textContent = "Please complete all required fields.";
+        return;
+      }
+
+      const url = "https://script.google.com/macros/s/your-google-script-id/exec"; // replace with your endpoint
+      const body = new URLSearchParams({ name, email, goal });
+
+      msg.className = "success";
+      msg.textContent = "Thank you. You are on the list.";
+      form.reset();
 
       try {
-        await fetch(url, {
+        fetch(url, {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ name, email, challenge })
+          mode: "no-cors",
+          headers: { "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8" },
+          body: body.toString()
         });
-        messageDiv.textContent = "✅ Thanks for joining Smellify!";
-        form.reset();
-      } catch(err) {
+      } catch (err) {
         console.error(err);
-        messageDiv.textContent = "⚠️ Something went wrong. Please try again.";
       }
     });
   </script>
